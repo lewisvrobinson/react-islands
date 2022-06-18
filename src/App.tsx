@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './style.css';
-import { islandRenderer } from './islandRenderer';
+import { IslandsRenderer } from './IslandsRenderer';
 // import { TestComponent } from './components/TestComponent';
 // import { AnotherComponent } from './components/AnotherComponent';
 
@@ -16,12 +16,12 @@ const AnotherComponent = React.lazy(() =>
 );
 
 // explicitly name the components as workaround for minification
-const islands = {
-  Test: <TestComponent />,
-  Test2: <TestComponent />, // not mounted
-  Another: <AnotherComponent />,
-  Another2: <AnotherComponent />, // not mounted
-};
+// const islands = {
+//   Test: TestComponent,
+//   Test2: TestComponent, // not mounted
+//   Another: AnotherComponent,
+//   Another2: AnotherComponent, // not mounted
+// };
 
 interface GlobalContextInterface {
   global: number;
@@ -38,7 +38,10 @@ export default function App() {
   return (
     <React.Fragment>
       <GlobalContext.Provider value={{ global, setGlobal }}>
-        {islandRenderer(islands)}
+        <IslandsRenderer fallback="loading......">
+          <TestComponent componentIslandName="Test" />
+          <AnotherComponent componentIslandName="Another" />
+        </IslandsRenderer>
       </GlobalContext.Provider>
     </React.Fragment>
   );
