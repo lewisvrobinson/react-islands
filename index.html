@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/src/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+  </head>
+  <body>
+    <main id="root">
+      <h1>🏝 React Islands</h1>
+      <strong>
+        ...with <u><i>global</i></u> context providers! ✨
+      </strong>
+      <p>Demo of a React app mounted to a virtual root with its children being rendered by portals and attached to their appropriate DOM elements.</p>
+      <p>
+        This allows the use of global context providers while still using the "<a href="https://jasonformat.com/islands-architecture/">Islands</a>"
+        architecture pattern.
+      </p>
+
+      <div class="callout">
+        <div>⚠️</div>
+        <div><b>Untested.</b> Still need to do some profiling around the implications of using portals this way.</div>
+      </div>
+      <div class="callout">
+        <div>💡</div>
+        <div>Also wondering if this would work better within a custom renderer 🤔</div>
+      </div>
+
+      <div class="demo">
+        <react-component data-component-name="Test" data-props='{ "content": "hey there" }'></react-component>
+        <div class="ocean">
+          <h3>🌊 Just a regular DOM element</h3>
+        </div>
+        <react-component data-component-name="Another" data-props='{ "content": "hello there" }'></react-component>
+      </div>
+    </main>
+
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
