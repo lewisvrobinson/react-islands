@@ -60,7 +60,7 @@ export function useFlash(
       node,
       [
         { background: 'var(--flashColor)', easing: 'ease-in' },
-        { background: 'var(--flashColor)', offset: 0.8, easing: 'linear' },
+        { background: 'var(--flashColor)', offset: 0.4, easing: 'linear' },
         { background: 'transparent', easing: 'ease-out' },
       ],
       { duration: DURATION, fill: 'forwards' }

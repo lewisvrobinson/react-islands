@@ -1,5 +1,8 @@
 :root {
-  --color-demo: hsl(292 47.7% 70.8%);
+  --color-background: white;
+  --color-foreground: hsl(61 2.0% 8.3%);
+  --color-demo-highlight: hsl(292 47.7% 70.8%);
+  --color-demo-background: aliceblue;
   --color-code: hsl(280 70% 20%);
   --color-code-subtle: hsl(280 70% 95%);
   --color-island: hsl(52 100% 95.5%);
@@ -9,14 +12,35 @@
   --color-local-flash: hsl(292 47.7% 90%);
   --color-props: hsl(228 100% 75.9%);
   --color-props-flash: hsl(228 100% 90%);
+  --color-tint: rgba(0, 0, 0, 0.1);
 }
 
-body {
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: hsl(61 2.0% 8.3%);
+    --color-foreground: #ededed;
+    --color-demo-highlight: hsl(292 47.7% 70.8%);
+    --color-demo-background: hsl(229 24.0% 10.0%);
+    --color-code: hsl(280 70% 99%);
+    --color-code-subtle: hsl(280 70% 15%);
+    --color-island: hsl(43 14.3% 9.6%);
+    --color-global: hsl(167 70% 38%);
+    --color-global-flash: hsl(167 70% 20%);
+    --color-local: hsl(292 47.7% 60.8%);
+    --color-local-flash: hsl(292 47.7% 20%);
+    --color-props: hsl(228 100% 65.9%);
+    --color-props-flash: hsl(228 100% 20%);
+    --color-tint: rgba(255, 255, 255, 0.1);
+  }
+}
+
+body,
+html {
+  background: var(--color-background);
+  color: var(--color-foreground);
   font-size: 1rem;
   margin: 0;
   font-family: -apple-system, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  /* -webkit-font-smoothing: antialiased; */
-  /* -moz-osx-font-smoothing: grayscale; */
 }
 main {
   display: grid;
@@ -33,8 +57,23 @@ main > * {
   margin: 0;
 }
 
+h1 {
+  font-size: 3rem;
+}
+h2 {
+  font-size: 2rem;
+}
 h3 {
   margin: 0;
+}
+
+u {
+  text-decoration: underline var(--color-local);
+}
+
+a {
+  color: var(--color-props);
+  text-decoration: wavy underline var(--color-props-flash);
 }
 
 .callout {
@@ -54,8 +93,8 @@ h3 {
   padding: 1rem;
   margin-top: 2rem;
   border-radius: 1rem;
-  background: aliceblue;
-  border: 2px dashed var(--color-demo);
+  background: var(--color-demo-background);
+  border: 2px dashed var(--color-demo-highlight);
 }
 
 @media screen and (max-width: 100ch) {
@@ -76,9 +115,9 @@ h3 {
   position: absolute;
   top: 0;
   transform: translateY(-50%) skewX(-15deg);
-  box-shadow: 0 0 0 2px var(--color-demo);
-  background: white;
-  color: var(--color-demo);
+  box-shadow: 0 0 0 2px var(--color-demo-highlight);
+  background: var(--color-background);
+  color: var(--color-demo-highlight);
   font-weight: bold;
   text-transform: uppercase;
   font-size: 0.8rem;
@@ -86,7 +125,9 @@ h3 {
 }
 
 code {
-  font-size: 0.8rem;
+  display: inline-flex;
+  padding: 0.25em;
+  font-size: 0.9rem;
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
   border-radius: 0.25rem;
   color: var(--color-code);
@@ -103,28 +144,32 @@ code::after {
   padding: 2rem;
   margin: 2rem 1rem;
   border-radius: 1rem;
-  background: aliceblue;
-  color: hsl(208deg 30% 50%);
-  border: 2px solid currentColor;
-  text-shadow: 2px 2px 0 aliceblue;
-  background: repeating-linear-gradient(-45deg, aliceblue, aliceblue 10px, hsl(208deg 100% 90%) 10px, hsl(208deg 100% 90%) 20px);
+  background: var(--color-demo-background);
+  /* box-shadow: inset 0 0 0 0.5rem var(--color-tint); */
+  text-shadow: 2px 2px 0 var(--color-demo-background);
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--color-demo-background),
+    var(--color-demo-background) 10px,
+    var(--color-tint) 10px,
+    var(--color-tint) 20px
+  );
 }
 
 .island {
-  color: initial;
+  color: var(--color-foreground);
   display: flex;
   flex-direction: column;
   padding: 1.5rem;
   margin: 1rem;
   border-radius: 1rem;
   background: var(--color-island);
-  /* border: 2px solid currentColor; */
-  box-shadow: inset 0 0 0 0.5rem rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 0 0 0.5rem var(--color-tint);
 }
 .island pre {
   font-family: 'Monaco', 'Courier New', Courier, monospace;
   margin: 0;
-  background: rgba(0, 0, 0, 0.1);
+  background: var(--color-tint);
   padding: 0.25rem 0.75rem;
   border-radius: 0.5rem;
   border: 2px solid var(--highlight);
@@ -137,8 +182,8 @@ code::after {
   line-height: 1.8;
   margin-top: 0.5rem;
   border-radius: 0.75rem;
-  /* border: 2px solid var(--flashColor); */
   padding: 0.5rem;
+  color: inherit;
 }
 .island [data-type='props'] {
   --flashColor: var(--color-props-flash);
@@ -170,16 +215,17 @@ button {
   justify-content: center;
   align-items: center;
   min-width: 1rem;
-  background: white;
+  background: var(--color-background);
+  color: var(--color-foreground);
   border: 2px solid var(--border-color);
   cursor: pointer;
   font-weight: bold;
 }
 button:hover {
-  background: lightgrey;
+  background: var(--color-tint);
 }
 button:active {
-  background: lightskyblue;
+  background: var(--flashColor);
 }
 button:first-of-type {
   border-radius: var(--corner-radius) 0 0 var(--corner-radius);
