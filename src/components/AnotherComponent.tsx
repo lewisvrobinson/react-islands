@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { GlobalContext, useFlash } from '../App';
 
-export const AnotherComponent = (props: {}) => {
+export const AnotherComponent = (props: any) => {
   const rootRef = React.useRef<HTMLDivElement>(null);
   const { global, setGlobal } = React.useContext(GlobalContext);
   const [local, setLocal] = React.useState(0);

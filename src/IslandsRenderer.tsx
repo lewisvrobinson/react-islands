@@ -51,7 +51,9 @@ export function IslandsRenderer({
 
   return (
     <React.Fragment>
-      {components.map((component) => createIsland(component))}
+      {components.map((component) =>
+        createIsland(component as React.ReactElement)
+      )}
     </React.Fragment>
   );
 }
