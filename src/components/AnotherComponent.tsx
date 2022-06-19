@@ -11,10 +11,11 @@ export const AnotherComponent = (props: {}) => {
   return (
     <div ref={rootRef} className="island">
       <h3>
-        👋 I'm <i>also</i> island
+        I'm <i>also</i> an island
       </h3>
       <p>
-        I'm a React component rendered by <code>ReactDOM.createPortal</code>
+        We're rendered by <code>ReactDOM.createPortal</code> so that we can
+        still consume global context providers!
       </p>
       <div data-type="props">
         <b>Props</b>

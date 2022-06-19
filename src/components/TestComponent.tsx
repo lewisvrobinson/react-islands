@@ -10,7 +10,10 @@ export const TestComponent = (props: {}) => {
 
   return (
     <div ref={rootRef} className="island">
-      <h3>👋 I'm an island</h3>
+      <h3>👋 Hi, I'm an "island"</h3>
+      <p>
+        Which means that I'm a React component rendered into a DOM node, creating an "island" of interactivity.
+      </p>
       <div data-type="props">
         <b>Props</b>
         {''}

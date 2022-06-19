@@ -1,17 +1,21 @@
 import React, { cloneElement, createElement } from 'react';
 import { createPortal } from 'react-dom';
 
-export function IslandsRenderer({
-  children,
-}: {
+interface IslandsRendererProps {
+  fallback?: React.ReactNode | null;
   children: React.ReactElement | React.ReactElement[];
-}) {
+}
+
+export function IslandsRenderer({
+  fallback = null,
+  children,
+}: IslandsRendererProps) {
   const components = React.Children.toArray(children);
   console.log(components);
 
   function createIsland(component: React.ReactElement) {
     const { componentIslandName, ...componentProps } = component.props;
-    const islandNodes = React.useRef(
+    const islandNodes = React.useRef<NodeListOf<HTMLElement>>(
       document.querySelectorAll(
         `react-component[data-component-name="${componentIslandName}"]`
       )
@@ -37,7 +41,7 @@ export function IslandsRenderer({
         );
 
         return (
-          <React.Suspense>
+          <React.Suspense fallback={fallback}>
             {createPortal(componentWithProps, islandNode)}
           </React.Suspense>
         );
