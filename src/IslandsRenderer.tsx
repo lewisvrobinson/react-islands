@@ -1,4 +1,4 @@
-import React, { cloneElement, createElement } from 'react';
+import React, { createElement } from 'react';
 import { createPortal } from 'react-dom';
 
 interface IslandsRendererProps {
@@ -11,7 +11,6 @@ export function IslandsRenderer({
   children,
 }: IslandsRendererProps) {
   const components = React.Children.toArray(children);
-  console.log(components);
 
   function createIsland(component: React.ReactElement) {
     const { componentIslandName, ...componentProps } = component.props;
